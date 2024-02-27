@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Note making App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body >
+    
+    <h1>Notes Making App</h1>
+    <form action="{{ url_for('add_note') }}" method="post">
+        <label for="content">Add a Note:</label>
+        <input type="text" id="content" name="content" required>
+        <button class='button add'type="submit">Add</button>
+    </form>
+    <ul>
+        {% for note in notes %}
+            <li>
+                <h3>{{ note[1] }}</h3>
+                <button  class='button edit'style.css='float:left'><a id='edit-btn' href="{{ url_for('edit_note', note_id=note[0]) }}">Edit</a></button>
+                <button  class='button del'style.css='float:left'><a id='delete-btn' href="{{ url_for('delete_note', note_id=note[0]) }}">Delete</a></button>
+            </li>
+        {% endfor %}
+    </ul>
+    
+</body>
+</html>
